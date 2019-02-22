@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
@@ -12,6 +13,14 @@ public class CartPage extends BasePage{
         CartPage page = new CartPage(driver);
         driver.get("https://www.saucedemo.com/cart.html");
         return page;
+    }
+
+    public void setCartState() {
+        ((JavascriptExecutor)driver).executeScript(
+                "window.sessionStorage.setItem('cart-contents', '[4,1]')");
+        ((JavascriptExecutor)driver).executeScript(
+                "window.sessionStorage.setItem('standard-username', 'standard-user')");
+        driver.navigate().refresh();
     }
 
     public CartPage(WebDriver driver) { this.driver = driver; }
