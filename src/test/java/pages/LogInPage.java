@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class LogInPage extends BasePage {
     private By userField = By.cssSelector("[placeholder = 'Username']");
     private By passwordField = By.cssSelector("[placeholder = 'Password']");
-    private By loginButton = By.className("login-button");
+    private By loginButton = By.cssSelector("[value = 'LOGIN']");
 
     public static LogInPage visit(WebDriver driver) {
         LogInPage page = new LogInPage(driver);
@@ -20,13 +20,12 @@ public class LogInPage extends BasePage {
     }
 
     public void signInSuccessfully() {
-        logIn(driver);
+        logIn();
     }
 
-    private void logIn(WebDriver driver) {
+    private void logIn() {
         String username = "standard_user";
         String password = "secret_sauce";
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         sendKeys(userField, username);
         sendKeys(passwordField, password);
         click(loginButton);

@@ -23,9 +23,8 @@ public class BasePage {
     public String getInnerText(By locator) { return findBy(locator).getText();}
 
     private void waitForElement(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.
-                presenceOfElementLocated(locator));
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
 }
